@@ -11,17 +11,17 @@ export const getAllTable = async (filter) => {
     return results
 }
 
-export const addContact = async (data) => {
-    const response = await instance.post('/table', {
-        name: data.name,
-        number: data.number,
-    })
-    return response.data;
+export const addContact = async ({ id, name, email, birthday_date, phone_number, address }) => {
+    const body = { name, email, birthday_date, phone_number, address };
+    if (!address) {
+        delete body.address;
+    }
+
+    const { data } = await instance.post(`/table/`, body);
+    return data;
+
 }
 
-export const deleteContact = async (id) => {
-    await instance.delete(`/table/${id}/`)
-}
 
 export const updateContact = async ({ id, name, email, birthday_date, phone_number, address }) => {
     const body = { name, email, birthday_date, phone_number, address };
@@ -31,4 +31,7 @@ export const updateContact = async ({ id, name, email, birthday_date, phone_numb
 
     const { data } = await instance.put(`/table/${id}/`, body);
     return data;
+}
+export const deleteContact = async (id) => {
+    await instance.delete(`/table/${id}/`)
 }

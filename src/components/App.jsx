@@ -15,6 +15,8 @@ import { refreshUserThunk } from 'redux/auth/thunk';
 import { ToastContainer } from 'react-toastify';
 import { selectorIsRefreshing } from 'redux/auth/selectors';
 
+import ModalAddContact from 'pages/modalChange/ModalAddContact';
+
 const App = () => {
   const dispatch = useDispatch();
   const isRefreshin = useSelector(selectorIsRefreshing);
@@ -50,6 +52,7 @@ const App = () => {
         </Route>
       </Routes>
       <ModalChangeContact />
+      <ModalAddContact />
       <ToastContainer
         position="bottom-right"
         autoClose={1500}

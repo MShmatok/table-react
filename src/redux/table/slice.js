@@ -9,7 +9,8 @@ const initialState = {
         items: [],
     },
     filter: { searchName: '', searchEmail: '', searchBirthday_date: '', searchPhone_number: '', searchAddress: '' },
-    dataForUpdate: ''
+    dataForUpdate: '',
+    dataForAdd: ''
 };
 
 const tableSlice = createSlice({
@@ -28,9 +29,13 @@ const tableSlice = createSlice({
         closeModal(state) { state.dataForUpdate = '' },
         openChangeModal(state, { payload }) {
             state.dataForUpdate = payload;
+        },
+        closeModalAdd(state) { state.dataForAdd = '' },
+        openModalAdd(state, { payload }) {
+            state.dataForAdd = payload;
         }
     }
 })
 
 export const reducerTable = tableSlice.reducer;
-export const { closeModal, setFilter, openChangeModal } = tableSlice.actions;
+export const { closeModal, setFilter, openChangeModal, closeModalAdd, openModalAdd } = tableSlice.actions;

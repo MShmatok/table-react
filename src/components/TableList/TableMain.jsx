@@ -16,7 +16,6 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import {
-  
   selectFilterAddress,
   selectFilterBirthday_date,
   selectFilterEmail,
@@ -31,7 +30,6 @@ import TableItem from 'components/TableItem/TableItem';
 import { openChangeModal, setFilter } from 'redux/table/slice';
 import { deleteContactThunk, getAllthunk } from 'redux/table/thunk';
 import Grid from '@mui/material/Grid';
-
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -134,26 +132,31 @@ export default function CustomPaginationActionsTable() {
     switch (name) {
       case 'searchName':
         dispatch(setFilter({ name, value }));
+        setPage(0);
         dispatch(getAllthunk());
         break;
 
       case 'searchEmail':
         dispatch(setFilter({ name, value }));
+        setPage(0);
         dispatch(getAllthunk());
         break;
 
       case 'searchBirthday_date':
         dispatch(setFilter({ name, value }));
+        setPage(0);
         dispatch(getAllthunk());
         break;
 
       case 'searchPhone_number':
         dispatch(setFilter({ name, value }));
+        setPage(0);
         dispatch(getAllthunk());
         break;
 
       case 'searchAddress':
         dispatch(setFilter({ name, value }));
+        setPage(0);
         dispatch(getAllthunk());
         break;
 
@@ -164,7 +167,7 @@ export default function CustomPaginationActionsTable() {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 600 }} aria-label="custom pagination table">
+      <Table sx={{ minWidth: 900 }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
             <TableCell align="left">

@@ -8,10 +8,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAllTable, selectorDataForModalAdd } from 'redux/table/selectors';
+import { toast } from 'react-toastify';
 
 const defaultTheme = createTheme();
 
 const InpurForm = ({
+  add,
   onSubmit,
   mainTitle,
   btbTitle,
@@ -23,6 +27,28 @@ const InpurForm = ({
     address: '',
   },
 }) => {
+  const items = useSelector(selectAllTable);
+  const dispatch = useDispatch();
+
+  const isDuplicate = data => {
+    let isDuplicate = items.find(elem => {
+      return (
+        elem.email.toLowerCase().trim() === data.email.toLowerCase().trim()
+      );
+    });
+    if (isDuplicate) {
+      toast(`${data.email} is alredy in Table!`);
+      return true;
+    }
+  };
+
+  // const onSubmit = newContact => {
+  //   if (isDuplicate(newContact)) {
+  //     return;
+  //   }
+  //   dispatch(addNewContactThunk(newContact));
+  // };
+
   const changeDate = birthday_date => {
     const [dd, mm, yy] = birthday_date.split('-');
     const year = yy < 30 ? 20 + yy : 19 + yy;
@@ -31,10 +57,9 @@ const InpurForm = ({
   };
   const [name, setName] = useState(dataUser.name);
   const [email, setEmail] = useState(dataUser.email);
-  // const [birthday_date, setBirthday_date] = useState('2012-12-12');
 
   const [birthday_date, setBirthday_date] = useState(() => {
-    return changeDate(dataUser.birthday_date);
+    return dataUser.birthday_date ? changeDate(dataUser.birthday_date) : '';
   });
   const [phone_number, setPhone_number] = useState(dataUser.phone_number);
   const [address, setAddress] = useState(dataUser.address);
@@ -68,6 +93,11 @@ const InpurForm = ({
 
   const onSubmitForm = e => {
     e.preventDefault();
+    if (add) {
+      if (isDuplicate({ email })) {
+        return;
+      }
+    }
     onSubmit({ id, name, email, birthday_date, phone_number, address });
   };
 

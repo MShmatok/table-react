@@ -7,6 +7,7 @@ import {
 import { getAllthunk } from 'redux/table/thunk';
 import { useDispatch } from 'react-redux';
 import CustomPaginationActionsTable from 'components/TableList/TableMain';
+import AddNewContact from 'components/AddNewContact/AddNewContact';
 
 const Table = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const Table = () => {
   return (
     <SectionStyled>
       <WrapperPagePartStyled>
-        {' '}
+        <AddNewContact />
         <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(1, 4fr)' }}>
           {/* <ContactForm /> */}
           <CustomPaginationActionsTable />

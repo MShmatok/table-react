@@ -10,25 +10,45 @@ export default function TableItem({ row, onDelete, openChangeModal }) {
       <TableCell
         component="th"
         scope="row"
-        style={{ minWidth: 50 }}
+        style={{ minWidth: 50, maxWidth: 166, overflow: 'hidden' }}
         align="left"
       >
         {row.name}
       </TableCell>
-      <TableCell style={{ minWidth: 50 }} align="left">
+      <TableCell
+        style={{ minWidth: 50, maxWidth: 150, overflow: 'hidden' }}
+        align="left"
+      >
         {row.email}
       </TableCell>
-      <TableCell style={{ minWidth: 50 }} align="left">
+      <TableCell
+        style={{ minWidth: 50, maxWidth: 166, overflow: 'hidden' }}
+        align="left"
+      >
         {row.birthday_date}
       </TableCell>
-      <TableCell style={{ minWidth: 50 }} align="left">
+      <TableCell
+        style={{ minWidth: 50, maxWidth: 166, overflow: 'hidden' }}
+        align="left"
+      >
         {row.phone_number}
       </TableCell>
-      <TableCell style={{ minWidth: 50 }} align="left">
+      <TableCell
+        style={{ minWidth: 50, maxWidth: 166, overflow: 'hidden' }}
+        align="left"
+      >
         {row.address}
       </TableCell>
-      <TableCell style={{ minWidth: 136 }} align="left">
-        <IconButton onClick={onDelete} aria-label="delete" size="large">
+      <TableCell
+        style={{ minWidth: 136, maxWidth: 166, overflow: 'hidden' }}
+        align="left"
+      >
+        <IconButton
+          onClick={onDelete}
+          aria-label="delete"
+          color="error"
+          size="large"
+        >
           <DeleteIcon />
         </IconButton>
         <IconButton

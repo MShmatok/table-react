@@ -5,6 +5,7 @@ export const SectionStyled = styled.section`
 
 padding-top: 35px;
 
+
 `
 
 export const WrapperPagePartStyled = styled.div`

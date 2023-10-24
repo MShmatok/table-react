@@ -5,11 +5,11 @@ import Modal from '@mui/material/Modal';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { closeModal } from 'redux/table/slice';
-import { selectorDataForModal } from 'redux/table/selectors';
+import { closeModalAdd } from 'redux/table/slice';
+import { selectorDataForModalAdd } from 'redux/table/selectors';
 
 import InpurForm from 'components/inputForm/InputForm';
-import { updateContactThunk } from 'redux/table/thunk';
+import { addNewContactThunk } from 'redux/table/thunk';
 
 const style = {
   position: 'absolute',
@@ -23,15 +23,16 @@ const style = {
   p: 4,
 };
 
-const ModalChangeContact = () => {
+const ModalAddContact = () => {
   const dispatch = useDispatch();
-  const data = useSelector(selectorDataForModal);
-  const handleClose = () => dispatch(closeModal());
+  const data = useSelector(selectorDataForModalAdd);
+  const handleClose = () => dispatch(closeModalAdd());
 
   const onSubmitModal = data => {
-    dispatch(updateContactThunk(data));
+    dispatch(addNewContactThunk(data));
     handleClose();
   };
+
   return (
     <div>
       <Modal
@@ -43,10 +44,10 @@ const ModalChangeContact = () => {
         <Box sx={style}>
           <InpurForm
             onSubmit={onSubmitModal}
-            mainTitle={'Change contact'}
-            btbTitle={'Apply changes!'}
+            mainTitle={'Add contact'}
+            btbTitle={'ADD NEW CONTACT!'}
             dataUser={data}
-            add={false}
+            add={true}
           />
         </Box>
       </Modal>
@@ -54,4 +55,4 @@ const ModalChangeContact = () => {
   );
 };
 
-export default ModalChangeContact;
+export default ModalAddContact;

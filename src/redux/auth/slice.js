@@ -15,7 +15,8 @@ const handleLogOut = (state) => {
 }
 
 const handleRefreshUser = (state, { payload }) => {
-    state.token = payload.token
+    state.token = payload.token;
+    state.userName = payload.userName
     state.isRefreshing = false;
 }
 const handleRefreshUserEnd = (state) => {
