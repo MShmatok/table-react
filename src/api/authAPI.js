@@ -12,7 +12,7 @@ const deleteToken = () => {
 // work  with API singIn
 export const refreshUser = async () => {
     const token = localStorage.getItem('token');
-    return { token: 'token valid', userName: 'testuser' };
+    return { token, userName: 'testuser' };
 }
 export const login = async (dataUser) => {
     await instance.post('/login/', dataUser);

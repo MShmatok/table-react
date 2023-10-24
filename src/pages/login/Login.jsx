@@ -14,7 +14,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { useDispatch } from 'react-redux';
 import { loginThunk } from 'redux/auth/thunk';
-import { Input, InputLabel } from '@mui/material';
 
 const defaultTheme = createTheme();
 

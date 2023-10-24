@@ -1,5 +1,3 @@
-import ContactForm from 'components/ContactForm/ContactForm';
-import ContactList from 'components/ContactList/ContactList';
 import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import {

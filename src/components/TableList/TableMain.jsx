@@ -16,7 +16,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import {
-  selectFilter,
+  
   selectFilterAddress,
   selectFilterBirthday_date,
   selectFilterEmail,
@@ -26,13 +26,12 @@ import {
 } from 'redux/table/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { TableHead, TextField } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { DriveFileRenameOutline } from '@mui/icons-material';
+
 import TableItem from 'components/TableItem/TableItem';
 import { openChangeModal, setFilter } from 'redux/table/slice';
 import { deleteContactThunk, getAllthunk } from 'redux/table/thunk';
 import Grid from '@mui/material/Grid';
-import { useEffect } from 'react';
+
 
 function TablePaginationActions(props) {
   const theme = useTheme();

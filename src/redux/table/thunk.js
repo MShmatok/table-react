@@ -1,7 +1,6 @@
-import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { selectFilter } from "./selectors";
+
 
 const { createAsyncThunk } = require("@reduxjs/toolkit")
 const { getAllTable, addContact, deleteContact, updateContact } = require("api/tableAPI")

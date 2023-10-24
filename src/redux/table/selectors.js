@@ -17,11 +17,3 @@ export const selectFilterAddress = state => state.table.filter.address;
 
 
 export const selectorFilteredTable = state => state.table.table.items;
-// export const selectorFilteredTable = createSelector([selectAllTable, selectFilter], (allTable, filter) => {
-//     return allTable.filter(item => {
-//         return item.name
-//             .trim()
-//             .toLocaleLowerCase()
-//             .includes(filter.trim().toLocaleLowerCase());
-//     })
-// });
