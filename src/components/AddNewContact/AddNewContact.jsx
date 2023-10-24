@@ -1,35 +1,11 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAllTable } from 'redux/table/selectors';
-import { toast } from 'react-toastify';
-import InpurForm from 'components/inputForm/InputForm';
-import { addNewContactThunk } from 'redux/table/thunk';
+import { useDispatch } from 'react-redux';
+
 import { Button } from '@mui/material';
-import { openChangeModal, openModalAdd } from 'redux/table/slice';
+import { openModalAdd } from 'redux/table/slice';
 
 const AddNewContact = () => {
-  const items = useSelector(selectAllTable);
   const dispatch = useDispatch();
-
-  const isDuplicate = data => {
-    let isDuplicate = items.find(elem => {
-      return (
-        elem.email.toLowerCase().trim() === data.email.toLowerCase().trim()
-      );
-    });
-    if (isDuplicate) {
-      toast(`${data.email} is alredy in Table!`);
-      return true;
-    }
-  };
-
-  const onSubmit = newContact => {
-    if (isDuplicate(newContact)) {
-      return;
-    }
-    dispatch(addNewContactThunk(newContact));
-  };
-
   const openModal = () => {
     dispatch(
       openModalAdd({

@@ -8,8 +8,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAllTable, selectorDataForModalAdd } from 'redux/table/selectors';
+import { useSelector } from 'react-redux';
+import { selectAllTable } from 'redux/table/selectors';
 import { toast } from 'react-toastify';
 
 const defaultTheme = createTheme();
@@ -28,7 +28,6 @@ const InpurForm = ({
   },
 }) => {
   const items = useSelector(selectAllTable);
-  const dispatch = useDispatch();
 
   const isDuplicate = data => {
     let isDuplicate = items.find(elem => {
