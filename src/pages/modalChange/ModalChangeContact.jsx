@@ -31,8 +31,8 @@ const ModalChangeContact = () => {
   const data = useSelector(selectorDataForModal);
   const handleClose = () => dispatch(closeModal());
 
-  const onSubmitModal = (name, number, id) => {
-    dispatch(updateContactThunk({ name, number, id }));
+  const onSubmitModal = data => {
+    dispatch(updateContactThunk(data));
     handleClose();
   };
   return (

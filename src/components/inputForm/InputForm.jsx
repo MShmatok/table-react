@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { TextareaAutosize } from '@mui/material';
 
 const defaultTheme = createTheme();
 
@@ -25,7 +26,7 @@ const InpurForm = ({
 }) => {
   const changeDate = birthday_date => {
     const [dd, mm, yy] = birthday_date.split('-');
-    const year = yy < 40 ? 20 + yy : 19 + yy;
+    const year = yy < 30 ? 20 + yy : 19 + yy;
     const rightDate = year + '-' + mm + '-' + dd;
     return rightDate;
   };
@@ -68,7 +69,7 @@ const InpurForm = ({
 
   const onSubmitForm = e => {
     e.preventDefault();
-    onSubmit(name, id);
+    onSubmit({ id, name, email, birthday_date, phone_number, address });
   };
 
   return (
@@ -140,6 +141,7 @@ const InpurForm = ({
               <Grid item xs={12}>
                 <TextField
                   fullWidth
+                  multiline
                   name="address"
                   label="Address"
                   type="text"

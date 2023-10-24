@@ -8,7 +8,7 @@ const initialState = {
     table: {
         items: [],
     },
-    filter: "",
+    filter: { searchName: '', searchEmail: '', searchBirthday_date: '', searchPhone_number: '', searchAddress: '' },
     dataForUpdate: ''
 };
 
@@ -24,7 +24,7 @@ const tableSlice = createSlice({
             .addCase(updateContactThunk.fulfilled, updateContactContact)
     },
     reducers: {
-        setFilter: (state, { payload }) => { state.filter = payload },
+        setFilter: (state, { payload }) => { state.filter[payload.name] = payload.value },
         closeModal(state) { state.dataForUpdate = '' },
         openChangeModal(state, { payload }) {
             state.dataForUpdate = payload;

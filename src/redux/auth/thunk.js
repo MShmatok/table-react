@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { logOut, login, refreshUser } from "api/auth";
+import { logOut, login, refreshUser } from "api/authAPI";
 import { toast } from "react-toastify";
 
 export const loginThunk = createAsyncThunk('auth/login', async (data, { rejectWithValue }) => {

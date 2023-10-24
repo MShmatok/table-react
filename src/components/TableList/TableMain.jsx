@@ -15,13 +15,24 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
-import { selectorFilteredTable } from 'redux/table/selectors';
+import {
+  selectFilter,
+  selectFilterAddress,
+  selectFilterBirthday_date,
+  selectFilterEmail,
+  selectFilterName,
+  selectFilterPhone_number,
+  selectorFilteredTable,
+} from 'redux/table/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { TableHead } from '@mui/material';
+import { TableHead, TextField } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { DriveFileRenameOutline } from '@mui/icons-material';
 import TableItem from 'components/TableItem/TableItem';
-import { openChangeModal } from 'redux/table/slice';
+import { openChangeModal, setFilter } from 'redux/table/slice';
+import { deleteContactThunk, getAllthunk } from 'redux/table/thunk';
+import Grid from '@mui/material/Grid';
+import { useEffect } from 'react';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -112,19 +123,150 @@ export default function CustomPaginationActionsTable() {
   };
   const dispatch = useDispatch();
 
+  const handleDelete = id => {
+    dispatch(deleteContactThunk(id));
+  };
   const openModal = data => {
     dispatch(openChangeModal(data));
   };
+
+  const onChangeSearch = e => {
+    const { name, value } = e.target;
+    switch (name) {
+      case 'searchName':
+        dispatch(setFilter({ name, value }));
+        dispatch(getAllthunk());
+        break;
+
+      case 'searchEmail':
+        dispatch(setFilter({ name, value }));
+        dispatch(getAllthunk());
+        break;
+
+      case 'searchBirthday_date':
+        dispatch(setFilter({ name, value }));
+        dispatch(getAllthunk());
+        break;
+
+      case 'searchPhone_number':
+        dispatch(setFilter({ name, value }));
+        dispatch(getAllthunk());
+        break;
+
+      case 'searchAddress':
+        dispatch(setFilter({ name, value }));
+        dispatch(getAllthunk());
+        break;
+
+      default:
+        break;
+    }
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 600 }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <TableCell align="left">Name</TableCell>
-            <TableCell align="left">Email</TableCell>
-            <TableCell align="left">Birthday date</TableCell>
-            <TableCell align="left">Phone number</TableCell>
-            <TableCell align="left">Address</TableCell>
+            <TableCell align="left">
+              Name{' '}
+              <Box component="form">
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      fullWidth
+                      id="searchName"
+                      type="text"
+                      label="Find by name"
+                      name="searchName"
+                      autoComplete="text"
+                      size="small"
+                      value={useSelector(selectFilterName)}
+                      onChange={onChangeSearch}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
+            </TableCell>
+            <TableCell align="left">
+              Email
+              <Box component="form">
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      fullWidth
+                      id="searchEmail"
+                      type="text"
+                      label="Find by email"
+                      name="searchEmail"
+                      autoComplete="text"
+                      size="small"
+                      value={useSelector(selectFilterEmail)}
+                      onChange={onChangeSearch}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
+            </TableCell>
+            <TableCell align="left">
+              Birthday date
+              <Box component="form">
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      fullWidth
+                      id="searchBirthday_date"
+                      type="date"
+                      name="searchBirthday_date"
+                      autoComplete="text"
+                      size="small"
+                      value={useSelector(selectFilterBirthday_date)}
+                      onChange={onChangeSearch}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
+            </TableCell>
+            <TableCell align="left">
+              Phone number
+              <Box component="form">
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      fullWidth
+                      id="searchPhone_number"
+                      type="text"
+                      label="Find by Phone number"
+                      name="searchPhone_number"
+                      autoComplete="text"
+                      size="small"
+                      value={useSelector(selectFilterPhone_number)}
+                      onChange={onChangeSearch}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
+            </TableCell>
+            <TableCell align="left">
+              Address
+              <Box component="form">
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      fullWidth
+                      id="searchAddress"
+                      type="text"
+                      label="Find by Address"
+                      name="searchAddress"
+                      autoComplete="text"
+                      size="small"
+                      value={useSelector(selectFilterAddress)}
+                      onChange={onChangeSearch}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
+            </TableCell>
             <TableCell align="left">Actions</TableCell>
           </TableRow>
         </TableHead>
@@ -139,7 +281,7 @@ export default function CustomPaginationActionsTable() {
             <TableItem
               key={row.id}
               row={row}
-              //   onDelete={() => handleDelete(item.id)}
+              onDelete={() => handleDelete(row.id)}
               openChangeModal={() => openModal(row)}
             />
           ))}
