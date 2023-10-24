@@ -8,6 +8,7 @@ import {
 } from '../../components/commonStyled/SectionStyled.styled';
 import { getAllthunk } from 'redux/table/thunk';
 import { useDispatch } from 'react-redux';
+import CustomPaginationActionsTable from 'components/TableList/TableMain';
 
 const Table = () => {
   const dispatch = useDispatch();
@@ -19,9 +20,10 @@ const Table = () => {
     <SectionStyled>
       <WrapperPagePartStyled>
         {' '}
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 4fr)' }}>
-          <ContactForm />
-          <ContactList />
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(1, 4fr)' }}>
+          {/* <ContactForm /> */}
+          <CustomPaginationActionsTable />
+          {/* <ContactList /> */}
         </Box>
       </WrapperPagePartStyled>
     </SectionStyled>

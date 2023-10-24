@@ -1,24 +1,24 @@
 import { addNewContactThunk, deleteContactThunk, getAllthunk, updateContactThunk } from "./thunk";
-import { handlerAddNewContact, handlerAllProducts, handlerDeleteContact, updateContactContact } from "./handlers";
+import { handlerAddNewContact, handlerGetAllData, handlerDeleteContact, updateContactContact } from "./handlers";
 
 const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
     isLoggedUser: false,
-    Table: {
+    table: {
         items: [],
     },
     filter: "",
     dataForUpdate: ''
 };
 
-const Tablelice = createSlice({
-    name: 'Table',
+const tableSlice = createSlice({
+    name: 'table',
     initialState,
 
     extraReducers: (builder) => {
         builder
-            .addCase(getAllthunk.fulfilled, handlerAllProducts)
+            .addCase(getAllthunk.fulfilled, handlerGetAllData)
             .addCase(addNewContactThunk.fulfilled, handlerAddNewContact)
             .addCase(deleteContactThunk.fulfilled, handlerDeleteContact)
             .addCase(updateContactThunk.fulfilled, updateContactContact)
@@ -32,5 +32,5 @@ const Tablelice = createSlice({
     }
 })
 
-export const reducerTable = Tablelice.reducer;
-export const { closeModal, setFilter, openChangeModal } = Tablelice.actions;
+export const reducerTable = tableSlice.reducer;
+export const { closeModal, setFilter, openChangeModal } = tableSlice.actions;

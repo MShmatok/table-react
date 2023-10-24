@@ -7,9 +7,10 @@ import TextField from '@mui/material/TextField';
 
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import { selectorFilteredTable } from 'redux/table/selectors';
 
 const Filter = () => {
-  const filter = useSelector(state => state.contact.filter);
+  const filter = useSelector(selectorFilteredTable);
   const dispatch = useDispatch();
 
   const setFilters = e => {

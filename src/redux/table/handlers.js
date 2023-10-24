@@ -1,17 +1,17 @@
-export const handlerAllProducts = (state, { payload }) => {
-    state.Table.items = payload;
+export const handlerGetAllData = (state, { payload }) => {
+    state.table.items = payload;
 }
 
 export const handlerAddNewContact = (state, { payload: { name, id, number } }) => {
-    state.Table.items.push({ name, id, number });
+    state.table.items.push({ name, id, number });
 }
 
 export const handlerDeleteContact = (state, { payload }) => {
-    state.Table.items = state.Table.items.filter((el) => el.id !== payload);
+    state.table.items = state.table.items.filter((el) => el.id !== payload);
 }
 
 export const updateContactContact = (state, { payload }) => {
-    const array = state.Table.items;
+    const array = state.table.items;
     let indexContactUpdate;
     for (let index = 0; index < array.length; index++) {
         if (array[index].id === payload.id) {
@@ -25,14 +25,14 @@ export const updateContactContact = (state, { payload }) => {
 
 
 export const handlePending = (state) => {
-    state.Table.isLoading = true;
-    state.Table.error = '';
+    state.table.isLoading = true;
+    state.table.error = '';
 }
 export const handleFulfilled = (state) => {
-    state.Table.isLoading = false;
+    state.table.isLoading = false;
 }
 export const handleRejected = (state, { error }) => {
-    state.Table.isLoading = false;
-    state.Table.error = error.message;
+    state.table.isLoading = false;
+    state.table.error = error.message;
 }
 

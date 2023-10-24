@@ -15,10 +15,30 @@ const InpurForm = ({
   onSubmit,
   mainTitle,
   btbTitle,
-  dataUser = { name: '', number: '', id: '' },
+  dataUser = {
+    name: '',
+    email: '',
+    birthday_date: '',
+    phone_number: '',
+    address: '',
+  },
 }) => {
+  const changeDate = birthday_date => {
+    const [dd, mm, yy] = birthday_date.split('-');
+    const year = yy < 40 ? 20 + yy : 19 + yy;
+    const rightDate = year + '-' + mm + '-' + dd;
+    return rightDate;
+  };
   const [name, setName] = useState(dataUser.name);
-  const [number, setNumber] = useState(dataUser.number);
+  const [email, setEmail] = useState(dataUser.email);
+  // const [birthday_date, setBirthday_date] = useState('2012-12-12');
+
+  const [birthday_date, setBirthday_date] = useState(() => {
+    return changeDate(dataUser.birthday_date);
+  });
+  const [phone_number, setPhone_number] = useState(dataUser.phone_number);
+  const [address, setAddress] = useState(dataUser.address);
+
   const [id] = useState(dataUser.id);
 
   const onChange = e => {
@@ -28,8 +48,17 @@ const InpurForm = ({
         setName(value);
         break;
 
-      case 'number':
-        setNumber(value);
+      case 'email':
+        setEmail(value);
+        break;
+      case 'birthday_date':
+        setBirthday_date(value);
+        break;
+      case 'phone_number':
+        setPhone_number(value);
+        break;
+      case 'address':
+        setAddress(value);
         break;
 
       default:
@@ -39,7 +68,7 @@ const InpurForm = ({
 
   const onSubmitForm = e => {
     e.preventDefault();
-    onSubmit(name, number, id);
+    onSubmit(name, id);
   };
 
   return (
@@ -76,11 +105,46 @@ const InpurForm = ({
                 <TextField
                   required
                   fullWidth
-                  name="number"
+                  name="email"
+                  label="Email"
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="birthday_date"
+                  label="Birthday date"
+                  type="date"
+                  id="birthday_date"
+                  value={birthday_date}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="phone_number"
                   label="Telephone number"
                   type="tel"
-                  id="tel"
-                  value={number}
+                  id="phone_number"
+                  value={phone_number}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  name="address"
+                  label="Address"
+                  type="text"
+                  id="address"
+                  value={address}
                   onChange={onChange}
                 />
               </Grid>

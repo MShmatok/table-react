@@ -5,7 +5,7 @@ import { reducerAuth } from "./auth/slice";
 
 export const store = configureStore({
     reducer: {
-        contact: reducerTable,
+        table: reducerTable,
         root: reducerRoot,
         auth: reducerAuth,
     },
