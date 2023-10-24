@@ -1,5 +1,3 @@
-import { createSelector } from "@reduxjs/toolkit";
-
 export const selectAllTable = state => state.table.table.items;
 export const selectIsLoading = state => state.table.isLoading;
 export const selectorIsLoading = state => state.table.isLoading;
