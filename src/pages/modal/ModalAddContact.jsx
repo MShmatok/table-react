@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalAdd } from 'store/table/slice';
 import { selectorDataForModalAdd } from 'store/table/selectors';
-import InpurForm from 'components/InputForm/InputForm';
+import InpurForm from 'components/inputForm/InputForm';
 import { addNewContactThunk } from 'store/table/thunk';
 
 const style = {
