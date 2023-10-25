@@ -137,7 +137,7 @@ const InpurForm = ({
                   inputProps={{
                     pattern:
                       '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$',
-                    title: 'From 1 to 254 Latin characters',
+                    title: 'From 1 to 254 latin characters',
                   }}
                 />
               </Grid>
