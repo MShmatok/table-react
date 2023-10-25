@@ -135,7 +135,8 @@ const InpurForm = ({
                   value={email}
                   onChange={onChange}
                   inputProps={{
-                    pattern: '^[A-Za-z ]{1,254}$',
+                    pattern:
+                      '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$',
                     title: 'From 1 to 254 Latin characters',
                   }}
                 />
