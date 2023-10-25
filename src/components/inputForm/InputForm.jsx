@@ -11,7 +11,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
 import { selectAllTable } from 'store/table/selectors';
 import { toast } from 'react-toastify';
-import { Input } from '@mui/material';
 
 const defaultTheme = createTheme();
 
@@ -119,13 +118,13 @@ const InpurForm = ({
                   value={name}
                   onChange={onChange}
                   inputProps={{
-                    pattern: '[A-Za-z0-9]{1,255}',
+                    pattern: '^[A-Za-z ]{1,255}$',
                     title: 'From 1 to 255 Latin characters',
                   }}
                 />
               </Grid>
               <Grid item xs={12}>
-                <Input
+                <TextField
                   required
                   fullWidth
                   autoComplete="on"
@@ -136,8 +135,7 @@ const InpurForm = ({
                   value={email}
                   onChange={onChange}
                   inputProps={{
-                    pattern:
-                      '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,12}$',
+                    pattern: '^[A-Za-z ]{1,254}$',
                     title: 'From 1 to 254 Latin characters',
                   }}
                 />
@@ -165,8 +163,9 @@ const InpurForm = ({
                   value={phone_number}
                   onChange={onChange}
                   inputProps={{
-                    pattern: '[0-9]{1,20}',
-                    title: 'From 1 to 20 number characters',
+                    inputMode: 'numeric',
+                    pattern: '[0-9]*',
+                    title: 'only numbers',
                   }}
                 />
               </Grid>
