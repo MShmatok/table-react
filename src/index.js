@@ -9,9 +9,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-
+    {/* basename="/table-react" */}
     <React.StrictMode>
-      <BrowserRouter basename="/table-react" >
+      <BrowserRouter  >
         <App />
       </BrowserRouter>
 
