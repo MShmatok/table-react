@@ -9,8 +9,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
-import { selectAllTable } from 'redux/table/selectors';
+import { selectAllTable } from 'store/table/selectors';
 import { toast } from 'react-toastify';
+import { Input } from '@mui/material';
 
 const defaultTheme = createTheme();
 
@@ -28,7 +29,6 @@ const InpurForm = ({
   },
 }) => {
   const items = useSelector(selectAllTable);
-
   const isDuplicate = data => {
     let isDuplicate = items.find(elem => {
       return (
@@ -41,28 +41,20 @@ const InpurForm = ({
     }
   };
 
-  // const onSubmit = newContact => {
-  //   if (isDuplicate(newContact)) {
-  //     return;
-  //   }
-  //   dispatch(addNewContactThunk(newContact));
-  // };
-
   const changeDate = birthday_date => {
     const [dd, mm, yy] = birthday_date.split('-');
     const year = yy < 30 ? 20 + yy : 19 + yy;
     const rightDate = year + '-' + mm + '-' + dd;
     return rightDate;
   };
+
   const [name, setName] = useState(dataUser.name);
   const [email, setEmail] = useState(dataUser.email);
-
   const [birthday_date, setBirthday_date] = useState(() => {
     return dataUser.birthday_date ? changeDate(dataUser.birthday_date) : '';
   });
   const [phone_number, setPhone_number] = useState(dataUser.phone_number);
   const [address, setAddress] = useState(dataUser.address);
-
   const [id] = useState(dataUser.id);
 
   const onChange = e => {
@@ -71,7 +63,6 @@ const InpurForm = ({
       case 'name':
         setName(value);
         break;
-
       case 'email':
         setEmail(value);
         break;
@@ -84,7 +75,6 @@ const InpurForm = ({
       case 'address':
         setAddress(value);
         break;
-
       default:
         break;
     }
@@ -125,21 +115,31 @@ const InpurForm = ({
                   type="text"
                   label="Name"
                   name="name"
-                  autoComplete="text"
+                  autoComplete="on"
                   value={name}
                   onChange={onChange}
+                  inputProps={{
+                    pattern: '[A-Za-z0-9]{1,255}',
+                    title: 'From 1 to 255 Latin characters',
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <Input
                   required
                   fullWidth
+                  autoComplete="on"
                   name="email"
                   label="Email"
                   type="email"
                   id="email"
                   value={email}
                   onChange={onChange}
+                  inputProps={{
+                    pattern:
+                      '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,12}$',
+                    title: 'From 1 to 254 Latin characters',
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -164,6 +164,10 @@ const InpurForm = ({
                   id="phone_number"
                   value={phone_number}
                   onChange={onChange}
+                  inputProps={{
+                    pattern: '[0-9]{1,20}',
+                    title: 'From 1 to 20 number characters',
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -176,6 +180,10 @@ const InpurForm = ({
                   id="address"
                   value={address}
                   onChange={onChange}
+                  inputProps={{
+                    pattern: '[A-Za-z0-9]{1,99999}',
+                    title: 'From 1 to 99999 Latin characters',
+                  }}
                 />
               </Grid>
             </Grid>
@@ -197,7 +205,15 @@ const InpurForm = ({
 export default InpurForm;
 
 InpurForm.propTypes = {
+  add: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
   mainTitle: PropTypes.string.isRequired,
   btbTitle: PropTypes.string.isRequired,
+  dataUser: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    birthday_date: PropTypes.string.isRequired,
+    phone_number: PropTypes.string.isRequired,
+    address: PropTypes.string,
+  }).isRequired,
 };

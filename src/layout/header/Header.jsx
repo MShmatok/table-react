@@ -5,7 +5,7 @@ import UserMenu from '../userMenu/UserMenu';
 import LoginMenu from '../loginMenu/LoginMenu';
 import { useSelector } from 'react-redux';
 
-import { selectorIsAuth } from 'redux/auth/selectors';
+import { selectorIsAuth } from 'store/auth/selectors';
 
 const Header = () => {
   const isAuth = useSelector(selectorIsAuth);

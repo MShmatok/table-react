@@ -3,7 +3,7 @@ import { NavStyled } from './Navigation.styled';
 import { LinkStyled } from '../header/HeaderStyled.styled';
 import { FcHome } from 'react-icons/fc';
 import { CiViewTable } from 'react-icons/ci';
-import { selectorIsAuth } from 'redux/auth/selectors';
+import { selectorIsAuth } from 'store/auth/selectors';
 import { useSelector } from 'react-redux';
 
 const Navigation = () => {

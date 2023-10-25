@@ -11,8 +11,6 @@ export const loginThunk = createAsyncThunk('auth/login', async (data, { rejectWi
     }
 })
 
-
-
 export const refreshUserThunk = createAsyncThunk('auth/refresh', (data) => refreshUser(data))
 export const logOutThunk = createAsyncThunk('auth/logOut', () => logOut())
 

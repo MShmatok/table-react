@@ -19,9 +19,7 @@ export const addContact = async ({ id, name, email, birthday_date, phone_number,
 
     const { data } = await instance.post(`/table/`, body);
     return data;
-
 }
-
 
 export const updateContact = async ({ id, name, email, birthday_date, phone_number, address }) => {
     const body = { name, email, birthday_date, phone_number, address };

@@ -3,10 +3,10 @@ import Box from '@mui/material/Box';
 import {
   SectionStyled,
   WrapperPagePartStyled,
-} from '../../components/commonStyled/SectionStyled.styled';
-import { getAllthunk } from 'redux/table/thunk';
+} from '../../utils/commonStyled/SectionStyled.styled';
+import { getAllthunk } from 'store/table/thunk';
 import { useDispatch } from 'react-redux';
-import CustomPaginationActionsTable from 'components/TableList/TableMain';
+import CustomPaginationActionsTable from 'components/table/TableList/TableMain';
 import AddNewContact from 'components/AddNewContact/AddNewContact';
 
 const Table = () => {
@@ -20,9 +20,7 @@ const Table = () => {
       <WrapperPagePartStyled>
         <AddNewContact />
         <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(1, 4fr)' }}>
-          {/* <ContactForm /> */}
           <CustomPaginationActionsTable />
-          {/* <ContactList /> */}
         </Box>
       </WrapperPagePartStyled>
     </SectionStyled>

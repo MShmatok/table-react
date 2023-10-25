@@ -23,7 +23,6 @@ export const updateContactContact = (state, { payload }) => {
 
 }
 
-
 export const handlePending = (state) => {
     state.table.isLoading = true;
     state.table.error = '';

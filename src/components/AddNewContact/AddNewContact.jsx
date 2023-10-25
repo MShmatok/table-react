@@ -2,10 +2,11 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Button } from '@mui/material';
-import { openModalAdd } from 'redux/table/slice';
+import { openModalAdd } from 'store/table/slice';
 
 const AddNewContact = () => {
   const dispatch = useDispatch();
+
   const openModal = () => {
     dispatch(
       openModalAdd({
@@ -17,6 +18,7 @@ const AddNewContact = () => {
       })
     );
   };
+
   return (
     <Button
       type="submit"

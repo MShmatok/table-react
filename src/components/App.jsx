@@ -7,19 +7,26 @@ import Home from '../pages/home/Home';
 import Table from '../pages/contact/Contact';
 import Login from '../pages/login/Login';
 import { GlobalStyle } from './GlobalStyled';
-import ModalChangeContact from '../pages/modalChange/ModalChangeContact';
+import ModalChangeContact from '../pages/modal/ModalChangeContact';
 import PublicRoute from 'guards/PublicRoute';
 import PrivateRoute from 'guards/PrivateRoute';
 
-import { refreshUserThunk } from 'redux/auth/thunk';
+import { refreshUserThunk } from 'store/auth/thunk';
 import { ToastContainer } from 'react-toastify';
-import { selectorIsRefreshing } from 'redux/auth/selectors';
+import { selectorIsRefreshing } from 'store/auth/selectors';
 
-import ModalAddContact from 'pages/modalChange/ModalAddContact';
+import ModalAddContact from 'pages/modal/ModalAddContact';
+import {
+  selectorDataForModal,
+  selectorDataForModalAdd,
+} from 'store/table/selectors';
 
 const App = () => {
   const dispatch = useDispatch();
   const isRefreshin = useSelector(selectorIsRefreshing);
+  const isShowModalChange = useSelector(selectorDataForModal);
+  const isShowModalAdd = useSelector(selectorDataForModalAdd);
+
   useEffect(() => {
     dispatch(refreshUserThunk());
   }, [dispatch]);
@@ -51,8 +58,8 @@ const App = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
-      <ModalChangeContact />
-      <ModalAddContact />
+      {isShowModalChange && <ModalChangeContact />}
+      {isShowModalAdd && <ModalAddContact />}
       <ToastContainer
         position="bottom-right"
         autoClose={1500}

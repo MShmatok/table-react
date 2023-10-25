@@ -1,15 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-
 import Modal from '@mui/material/Modal';
-
 import { useDispatch, useSelector } from 'react-redux';
-
-import { closeModalAdd } from 'redux/table/slice';
-import { selectorDataForModalAdd } from 'redux/table/selectors';
-
-import InpurForm from 'components/inputForm/InputForm';
-import { addNewContactThunk } from 'redux/table/thunk';
+import { closeModalAdd } from 'store/table/slice';
+import { selectorDataForModalAdd } from 'store/table/selectors';
+import InpurForm from 'components/InputForm/InputForm';
+import { addNewContactThunk } from 'store/table/thunk';
 
 const style = {
   position: 'absolute',

@@ -4,8 +4,8 @@ import { Button, WrapperUserMenu } from './UserMenu.styled';
 import { IoExitOutline } from 'react-icons/io5';
 import { FaRegUser } from 'react-icons/fa6';
 import { useDispatch, useSelector } from 'react-redux';
-import { logOutThunk } from 'redux/auth/thunk';
-import { selectorName } from 'redux/auth/selectors';
+import { logOutThunk } from 'store/auth/thunk';
+import { selectorName } from 'store/auth/selectors';
 
 const UserMenu = () => {
   const userName = useSelector(selectorName);

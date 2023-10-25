@@ -1,19 +1,15 @@
 import React from 'react';
 import { FaRegCircleUser } from 'react-icons/fa6';
-
 import Button from '@mui/material/Button';
-
 import TextField from '@mui/material/TextField';
-// import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { useDispatch } from 'react-redux';
-import { loginThunk } from 'redux/auth/thunk';
+import { loginThunk } from 'store/auth/thunk';
 
 const defaultTheme = createTheme();
 
